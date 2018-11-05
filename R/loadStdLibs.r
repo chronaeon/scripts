@@ -8,3 +8,5 @@ install.packages("quanteda")
 library(stringr)
 #for string manipulation
 
+library(RCurl)
+#reliable web fetcher
