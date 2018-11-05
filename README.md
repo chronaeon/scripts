@@ -12,3 +12,7 @@ Untars all the .tar files in a directory.
 
 ##### cloneallgitrepos.sh
 Clones all of a Github organization's Git repositories.
+
+##### regexes.md
+
+Contains useful regular expressions that can be combined with scripts on the command line or in a text editor such as Sublime Text or VIM.
