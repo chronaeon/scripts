@@ -1,11 +1,16 @@
 #for matrixizing Solidity files
 
 library(stringr)
+require("tm")
 
-solList <- list.files(path = "~/my_audits/set-protocol-contracts/contracts", pattern = "\\.sol$", recursive = TRUE, full.names = TRUE)
+
+solList <- list.files(path = "~/set-protocol-contracts/contracts", pattern = "\\.sol$", recursive = TRUE, full.names = TRUE)
 
 #flatten the Solidity files representing each as a single character vector
 flatCode <- lapply(solList, readLines)
+
+removeComments = c("(?s)\/\*.*?\*\/")
+removeWords(str,removeComments)
 
 #extract all numbers in the code
 flatCodeNumbers <- str_extract_all(flatCode,"[0-9]+")
@@ -28,3 +33,10 @@ str_count(flatCode, "withdraw")
 
 str_count(flatCode, "deposit")
 #find all functions with "deposit" in them
+
+str_count(flatCode, "transfer")
+#find all functions with "transfer" in them
+
+#str_count(flatCode, "token")
+
+#str_count(flatCode, "set")
