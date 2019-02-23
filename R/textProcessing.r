@@ -1,7 +1,6 @@
 #for matrixizing Solidity files
 
 library(stringr)
-require("tm")
 
 
 solList <- list.files(path = "~/set-protocol-contracts/contracts", pattern = "\\.sol$", recursive = TRUE, full.names = TRUE)
@@ -9,12 +8,18 @@ solList <- list.files(path = "~/set-protocol-contracts/contracts", pattern = "\\
 #flatten the Solidity files representing each as a single character vector
 flatCode <- lapply(solList, readLines)
 
-removeComments = c("(?s)\/\*.*?\*\/")
-removeWords(str,removeComments)
-
 #extract all numbers in the code
 flatCodeNumbers <- str_extract_all(flatCode,"[0-9]+")
-flatCodeNumeric<-as.numeric(flatCodeNumbers)
+
+library(ggplot2)
+library(ggpubr)
+theme_set(theme_pubr())
+
+#total numbers: table(unlist(flatCodeNumbers))
+
+flatCodeTable<-lapply(flatCodeNumbers, table)
+
+z <- do.call(cbind, flatCodeTable[3])
 
 vector <- unlist(flatCodeNumbers)
 
@@ -22,11 +27,11 @@ numbers <- as.numeric(vector)
 
 sortedNumbers <-  sort.int(numbers)
 
-library(plyr)
+#library(plyr)
 
 countedNumbers <- count(numbers)
 
-library(dplyr)
+#library(dplyr)
 
 str_count(flatCode, "withdraw")
 #find all functions with "withdraw" in them
