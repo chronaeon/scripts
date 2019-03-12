@@ -1,6 +1,6 @@
 
 
-listOfPackages <- c("ggplot2", "Rcpp", "stringr", "tokenizers", "tidyverse", "plyr", "tidytext", "dplyr", "reshape2", "tm", "ngram")
+listOfPackages <- c("ggplot2", "Rcpp", "stringr", "r2d3", "tokenizers", "tidyverse", "plyr", "tidytext", "dplyr", "reshape2", "tm", "ngram")
 new.packages <- listOfPackages[!(listOfPackages %in% installed.packages()[,"Package"])]
 
 if(length(new.packages)) install.packages(new.packages)
@@ -11,7 +11,7 @@ rm(new.packages)
 
 solList <- list.files(path = "~/set-protocol-contracts/contracts", pattern = "\\.sol$", recursive = TRUE, full.names = TRUE)
 
-
+#D3: https://github.com/d3/d3/wiki/Gallery
 solListFiltered <- gsub("^.*DappHub*$|^.*0x.*$|^.*test.*$|^.*kyber.*$|^.*mocks.*$|^.*node_modules.*$|^.*Migrations.*$|^.*coverageEnv.*$|^.*openzeppelin-solidity.*$|^.*cryptofin-solidity.*$|^.*0x.*$|^.*IERC20.*$|^.Bytes32.sol.*$|^.*Authorizable.sol.*$|^.*AddressArrayUtils.sol.*$|^.*CommonMath.sol.*$", "", solList, ignore.case = TRUE)
 solListClean <- solListFiltered[solListFiltered !=""]
 fileNames <- str_extract(solListClean, "([0-9a-zA-Z\\._-]+.(sol))")
@@ -89,6 +89,7 @@ transfersValDecreasing <- order(transfersNz, decreasing = TRUE)
 transfersGz <- which(transfers > 0, useNames = TRUE)
 transfersKey <- fileNames[transfersGz]
 transfersKeyDecreasing <- order(transfersKey, decreasing = TRUE)
+transfersKeyLength <- length(transfersKey)
 
 barplot(as.matrix(transfersNz), main = "Occurrences of Transfers in Set Protocol Contracts", ylab="Total", beside = TRUE, col=rainbow(12), legend = (transfersKey))
 
