@@ -66,7 +66,7 @@ withdrawsGz <- which(withdraws > 0, useNames = TRUE)
 withdrawsKey <- fileNames[withdrawsGz]
 withdrawsKeyDecreasing <- order(withdrawsKey, decreasing = TRUE)
 
-barplot(as.matrix(withdrawsNz), main = "Occurrences", ylab="Total", beside = TRUE, col=rainbow(12), legend = (withdrawsKey))
+barplot(as.matrix(withdrawsNz), main = "Occurrences of Withdraws in Set Protocol Contracts", ylab="Total", beside = TRUE, col=rainbow(12), legend = (withdrawsKey))
 
 #sort deposits
 deposits <- str_count(flatSol, "deposit")
@@ -78,7 +78,7 @@ depositsGz <- which(deposits > 0, useNames = TRUE)
 depositsKey <- fileNames[depositsGz]
 depositsKeyDecreasing <- order(depositsKey, decreasing = TRUE)
 
-barplot(as.matrix(depositsNz), main = "Occurrences", ylab="Total", beside = TRUE, col=rainbow(12), legend = (depositsKey))
+barplot(as.matrix(depositsNz), main = "Occurrences of Deposits in Set Protocol Contracts", ylab="Total", beside = TRUE, col=rainbow(12), legend = (depositsKey))
 
 #sort transfers
 transfers <- str_count(flatSol, "transfer")
@@ -90,8 +90,9 @@ transfersGz <- which(transfers > 0, useNames = TRUE)
 transfersKey <- fileNames[transfersGz]
 transfersKeyDecreasing <- order(transfersKey, decreasing = TRUE)
 
-barplot(as.matrix(transfersNz), main = "Occurrences of Transfers in Set Protocol Contracts", ylab="Total", beside = TRUE, col=rainbow(12), legend = (transfersKey))
+barplot(as.matrix(transfersNz), main = "Occurrences of Transfers in Set Protocol Contracts", ylab="Total", beside = TRUE, col=rainbow(12), xpd=TRUE, legend = (transfersKey))
 
 
 #find all functions with "transfer" in them
+
 
